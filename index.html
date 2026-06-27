@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<!--
+  读书派 - 免费电子书下载网站主页
+  域名：https://dushupai.github.io
+  说明：单文件 HTML，内联 CSS，无外部依赖，可直接浏览器打开。
+-->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ============ TDK（标题/描述/关键词） ============ -->
+    <title>读书派 - 免费电子书下载 | 海量中文电子书资源</title>
+    <meta name="description" content="读书派(dushupai.github.io)专注提供免费电子书下载的中文资源网站，收录文学小说、人文社科、历史传记、经济管理、计算机IT、科幻奇幻等各类电子书，支持EPUB、PDF、MOBI多种格式，免费下载，更新及时。">
+    <meta name="keywords" content="读书派,电子书下载,免费电子书,中文电子书,EPUB下载,PDF下载,MOBI下载,电子书资源">
+    <meta name="author" content="读书派">
+    <meta name="robots" content="index, follow">
+    <meta name="generator" content="读书派">
+
+    <!-- ============ canonical 规范化链接 ============ -->
+    <link rel="canonical" href="https://dushupai.github.io/">
+
+    <!-- ============ Open Graph 社交分享标签 ============ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="读书派">
+    <meta property="og:title" content="读书派 - 免费电子书下载 | 海量中文电子书资源">
+    <meta property="og:description" content="专注提供免费电子书下载的中文资源网站，海量电子书，支持EPUB/PDF/MOBI格式，免费下载。">
+    <meta property="og:url" content="https://dushupai.github.io/">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://dushupai.github.io/og-cover.png">
+
+    <!-- ============ Twitter Card 标签 ============ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="读书派 - 免费电子书下载">
+    <meta name="twitter:description" content="海量中文电子书免费下载，支持EPUB/PDF/MOBI格式。">
+    <meta name="twitter:image" content="https://dushupai.github.io/og-cover.png">
+
+    <!-- ============ JSON-LD 结构化数据 ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "读书派",
+      "alternateName": "读书派电子书下载",
+      "url": "https://dushupai.github.io/",
+      "description": "专注提供免费电子书下载的中文资源网站，收录各类电子书，支持EPUB/PDF/MOBI格式。",
+      "inLanguage": "zh-CN",
+      "publisher": {
+        "@type": "Organization",
+        "name": "读书派",
+        "url": "https://dushupai.github.io/"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://dushupai.github.io/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- ============ 网站图标（用 emoji SVG 作为 favicon，无外部资源） ============ -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+
+    <!-- ============ 内联样式 ============ -->
+    <style>
+        /* ---------- 设计变量 ---------- */
+        :root {
+            --color-primary: #2c4a6b;        /* 深蓝主色 */
+            --color-primary-dark: #1e3450;
+            --color-accent: #b8860b;         /* 古铜金强调 */
+            --color-accent-light: #d4a437;
+            --color-bg: #faf8f3;             /* 米白背景 */
+            --color-bg-alt: #f0ebe0;
+            --color-text: #2d3436;           /* 主文字 */
+            --color-text-light: #636e72;     /* 次要文字 */
+            --color-border: #e2dccd;
+            --color-white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(44, 74, 107, 0.08);
+            --shadow-md: 0 6px 20px rgba(44, 74, 107, 0.12);
+            --shadow-lg: 0 12px 32px rgba(44, 74, 107, 0.16);
+            --radius: 10px;
+            --radius-lg: 16px;
+            --max-width: 1200px;
+            --transition: all 0.25s ease;
+        }
+
+        /* ---------- 基础重置 ---------- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Source Han Sans CN", "Noto Sans CJK SC", sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--color-primary); text-decoration: none; transition: var(--transition); }
+        a:hover { color: var(--color-accent); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+
+        /* ---------- 顶部导航栏 ---------- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        .logo .logo-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: #fff;
+            font-size: 20px;
+        }
+        .nav-menu { display: flex; gap: 28px; }
+        .nav-menu a { color: var(--color-text); font-weight: 500; font-size: 15px; }
+        .nav-menu a:hover { color: var(--color-primary); }
+        .nav-search {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-search input {
+            width: 180px;
+            padding: 8px 14px;
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            font-size: 14px;
+            background: var(--color-bg);
+            color: var(--color-text);
+            outline: none;
+            transition: var(--transition);
+        }
+        .nav-search input:focus { border-color: var(--color-primary); background: #fff; }
+        .nav-search button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: var(--color-primary);
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .nav-search button:hover { background: var(--color-primary-dark); }
+        .nav-toggle { display: none; font-size: 26px; background: none; border: none; cursor: pointer; color: var(--color-primary); }
+
+        /* ---------- Hero 首屏 ---------- */
+        .hero {
+            background:
+                linear-gradient(135deg, rgba(44,74,107,0.92), rgba(30,52,80,0.95)),
+                radial-gradient(circle at 20% 30%, rgba(184,134,11,0.25), transparent 60%);
+            color: #fff;
+            padding: 90px 0 80px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+        }
+        .hero .hero-sub {
+            font-size: 18px;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+        }
+        .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 13px 32px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        .btn-primary { background: var(--color-accent); color: #fff; }
+        .btn-primary:hover { background: var(--color-accent-light); color: #fff; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+        .btn-outline:hover { background: rgba(255,255,255,0.12); color: #fff; border-color: #fff; }
+        .hero-stats { display: flex; gap: 48px; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
+        .hero-stat .num { font-size: 30px; font-weight: 700; color: var(--color-accent-light); }
+        .hero-stat .label { font-size: 14px; color: rgba(255,255,255,0.8); }
+
+        /* ---------- 通用区块标题 ---------- */
+        .section { padding: 70px 0; }
+        .section-alt { background: var(--color-bg-alt); }
+        .section-head { text-align: center; margin-bottom: 44px; }
+        .section-head h2 {
+            font-size: 30px;
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .section-head p { color: var(--color-text-light); font-size: 15px; }
+        .section-head .divider {
+            width: 50px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 14px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ---------- 书籍分类区 ---------- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .category-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 28px 16px;
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            text-align: center;
+        }
+        .category-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-accent); }
+        .category-card .cat-icon {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px;
+            color: #fff;
+        }
+        .category-card .cat-name { font-size: 16px; font-weight: 600; color: var(--color-text); }
+        .category-card .cat-count { font-size: 13px; color: var(--color-text-light); }
+        /* 分类配色 */
+        .c1 { background: linear-gradient(135deg,#2c4a6b,#1e3450); }
+        .c2 { background: linear-gradient(135deg,#b8860b,#d4a437); }
+        .c3 { background: linear-gradient(135deg,#8e44ad,#6c3483); }
+        .c4 { background: linear-gradient(135deg,#16a085,#0e6655); }
+        .c5 { background: linear-gradient(135deg,#c0392b,#922b21); }
+        .c6 { background: linear-gradient(135deg,#2980b9,#1f618d); }
+        .c7 { background: linear-gradient(135deg,#d35400,#a04000); }
+        .c8 { background: linear-gradient(135deg,#27ae60,#1e8449); }
+
+        /* ---------- 热门推荐区 ---------- */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+        .book-card {
+            display: flex;
+            gap: 18px;
+            padding: 22px;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+        .book-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .book-cover {
+            flex-shrink: 0;
+            width: 80px; height: 110px;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+            font-size: 26px;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+        .book-info { flex: 1; min-width: 0; }
+        .book-info h3 {
+            font-size: 17px;
+            color: var(--color-text);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .book-info .book-author { font-size: 13px; color: var(--color-text-light); margin-bottom: 8px; }
+        .book-info .book-tag {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--color-primary);
+            background: rgba(44,74,107,0.08);
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        .book-info .book-desc { font-size: 13px; color: var(--color-text-light); line-height: 1.6; margin-bottom: 12px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .btn-download {
+            display: inline-block;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 16px;
+            background: var(--color-accent);
+            color: #fff;
+        }
+        .btn-download:hover { background: var(--color-accent-light); color: #fff; }
+
+        /* ---------- 最新更新区 ---------- */
+        .update-list { background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--color-border); overflow: hidden; }
+        .update-item {
+            display: grid;
+            grid-template-columns: 1fr 140px 110px 90px;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+        .update-item:last-child { border-bottom: none; }
+        .update-item:hover { background: var(--color-bg); }
+        .update-item .u-title { font-weight: 600; color: var(--color-text); }
+        .update-item .u-title .u-author { font-weight: 400; color: var(--color-text-light); font-size: 13px; margin-left: 8px; }
+        .update-item .u-cat { font-size: 13px; color: var(--color-primary); }
+        .update-item .u-date { font-size: 13px; color: var(--color-text-light); }
+        .update-item .u-link { font-size: 13px; font-weight: 600; color: var(--color-accent); }
+
+        /* ---------- 网站特色区 ---------- */
+        .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .feature-card {
+            text-align: center;
+            padding: 36px 20px;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .feature-card .f-icon { font-size: 40px; margin-bottom: 16px; }
+        .feature-card h3 { font-size: 18px; color: var(--color-primary); margin-bottom: 10px; }
+        .feature-card p { font-size: 14px; color: var(--color-text-light); line-height: 1.7; }
+
+        /* ---------- 关于我们 ---------- */
+        .about-box {
+            max-width: 820px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+        .about-box h2 { color: var(--color-primary); font-size: 26px; margin-bottom: 8px; }
+        .about-box .about-sub { color: var(--color-text-light); font-size: 14px; margin-bottom: 22px; }
+        .about-box p { color: var(--color-text); line-height: 1.9; margin-bottom: 14px; }
+
+        /* ---------- 下载说明区（占位锚点目标） ---------- */
+        .download-note { padding: 40px 0; text-align: center; }
+        .download-note .note-box {
+            display: inline-block;
+            padding: 18px 28px;
+            background: rgba(184,134,11,0.08);
+            border: 1px dashed var(--color-accent);
+            border-radius: var(--radius);
+            color: var(--color-text-light);
+            font-size: 14px;
+            max-width: 760px;
+        }
+        .download-note strong { color: var(--color-primary); }
+
+        /* ---------- 页脚 ---------- */
+        .site-footer { background: var(--color-primary-dark); color: rgba(255,255,255,0.85); padding: 50px 0 24px; }
+        .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 32px; }
+        .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 16px; }
+        .footer-col p, .footer-col a { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 2; }
+        .footer-col a:hover { color: var(--color-accent-light); }
+        .footer-brand .logo { color: #fff; margin-bottom: 14px; }
+        .footer-brand .logo .logo-mark { background: var(--color-accent); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+        .footer-bottom a { color: rgba(255,255,255,0.6); }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 992px) {
+            .category-grid { grid-template-columns: repeat(2, 1fr); }
+            .book-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu, .nav-search { display: none; }
+            .nav-toggle { display: block; }
+            .hero h1 { font-size: 30px; }
+            .hero .hero-sub { font-size: 15px; }
+            .hero-stats { gap: 28px; }
+            .section { padding: 50px 0; }
+            .section-head h2 { font-size: 24px; }
+            .book-grid { grid-template-columns: 1fr; }
+            .update-item { grid-template-columns: 1fr; gap: 6px; padding: 14px 16px; }
+            .about-box { padding: 28px 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+        @media (max-width: 480px) {
+            .category-grid { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .hero { padding: 60px 0 50px; }
+            .hero h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ 顶部导航栏 ============ -->
+    <header class="site-header">
+        <div class="container nav">
+            <a href="#hero" class="logo" aria-label="读书派首页">
+                <span class="logo-mark">书</span>
+                <span>读书派</span>
+            </a>
+            <nav class="nav-menu" aria-label="主导航">
+                <a href="#hero">首页</a>
+                <a href="#category">书籍分类</a>
+                <a href="#hot">热门推荐</a>
+                <a href="#latest">最新更新</a>
+                <a href="#about">关于我们</a>
+            </nav>
+            <!-- 搜索表单：实际部署时将 action 替换为真实搜索接口地址 -->
+            <form class="nav-search" role="search" action="./index.html" method="get" aria-label="站内搜索">
+                <input type="search" name="q" placeholder="搜索书名或作者" aria-label="搜索关键词">
+                <button type="submit">搜索</button>
+            </form>
+            <button class="nav-toggle" aria-label="展开菜单">☰</button>
+        </div>
+    </header>
+
+    <!-- ============ Hero 首屏 ============ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>读书派 · 海量电子书免费下载</h1>
+            <p class="hero-sub">读书派是一个专注提供免费电子书下载的中文资源网站，收录文学、社科、历史、经管、计算机等各类电子书，支持 EPUB / PDF / MOBI 多种格式，让阅读触手可及。</p>
+            <div class="hero-actions">
+                <a href="#hot" class="btn btn-primary">开始找书</a>
+                <a href="#category" class="btn btn-outline">浏览分类</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="num">10000+</div><div class="label">精选电子书</div></div>
+                <div class="hero-stat"><div class="num">8</div><div class="label">书籍分类</div></div>
+                <div class="hero-stat"><div class="num">3</div><div class="label">下载格式</div></div>
+                <div class="hero-stat"><div class="num">365</div><div class="label">每日更新</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 书籍分类区 ============ -->
+    <section class="section" id="category">
+        <div class="container">
+            <div class="section-head">
+                <h2>书籍分类</h2>
+                <p>按分类快速找到你想读的电子书</p>
+                <div class="divider"></div>
+            </div>
+            <div class="category-grid">
+                <a href="#latest" class="category-card"><span class="cat-icon c1">文</span><span class="cat-name">文学小说</span><span class="cat-count">2500+ 本</span></a>
+                <a href="#latest" class="category-card"><span class="cat-icon c2">社</span><span class="cat-name">人文社科</span><span class="cat-count">1800+ 本</span></a>
+                <a href="#latest" class="category-card"><span class="cat-icon c3">史</span><span class="cat-name">历史传记</span><span class="cat-count">1200+ 本</span></a>
+                <a href="#latest" class="category-card"><span class="cat-icon c4">经</span><span class="cat-name">经济管理</span><span class="cat-count">1500+ 本</span></a>
+                <a href="#latest" class="category-card"><span class="cat-icon c5">计</span><span class="cat-name">计算机/IT</span><span class="cat-count">1600+ 本</span></a>
+                <a href="#latest" class="category-card"><span class="cat-icon c6">幻</span><span class="cat-name">科幻奇幻</span><span class="cat-count">900+ 本</span></a>
+                <a href="#latest" class="category-card"><span class="cat-icon c7">励</span><span class="cat-name">励志成功</span><span class="cat-count">800+ 本</span></a>
+                <a href="#latest" class="category-card"><span class="cat-icon c8">生</span><span class="cat-name">生活休闲</span><span class="cat-count">700+ 本</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 热门推荐区 ============ -->
+    <section class="section section-alt" id="hot">
+        <div class="container">
+            <div class="section-head">
+                <h2>热门推荐</h2>
+                <p>读者最爱的经典好书，免费下载</p>
+                <div class="divider"></div>
+            </div>
+            <div class="book-grid">
+                <!-- 每张卡片下载按钮 href="#download" 为占位，部署时替换为真实下载地址 -->
+                <article class="book-card">
+                    <div class="book-cover c1">百</div>
+                    <div class="book-info">
+                        <h3>百年孤独</h3>
+                        <div class="book-author">[哥伦比亚] 加西亚·马尔克斯</div>
+                        <span class="book-tag">文学小说</span>
+                        <p class="book-desc">魔幻现实主义经典，讲述布恩迪亚家族七代人的传奇故事，荣获诺贝尔文学奖。</p>
+                        <a href="#download" class="btn-download">免费下载</a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <div class="book-cover c2">人</div>
+                    <div class="book-info">
+                        <h3>人类简史</h3>
+                        <div class="book-author">[以色列] 尤瓦尔·赫拉利</div>
+                        <span class="book-tag">历史传记</span>
+                        <p class="book-desc">从认知革命到科学革命，重新讲述智人如何征服世界的一部宏大历史。</p>
+                        <a href="#download" class="btn-download">免费下载</a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <div class="book-cover c6">三</div>
+                    <div class="book-info">
+                        <h3>三体</h3>
+                        <div class="book-author">刘慈欣</div>
+                        <span class="book-tag">科幻奇幻</span>
+                        <p class="book-desc">中国科幻里程碑之作，描绘地球文明与三体文明的史诗级碰撞，获雨果奖。</p>
+                        <a href="#download" class="btn-download">免费下载</a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <div class="book-cover c5">深</div>
+                    <div class="book-info">
+                        <h3>深入理解计算机系统</h3>
+                        <div class="book-author">Randal E. Bryant / David R. O'Hallaron</div>
+                        <span class="book-tag">计算机/IT</span>
+                        <p class="book-desc">从程序员视角解析计算机系统，被誉为程序员必读经典教材。</p>
+                        <a href="#download" class="btn-download">免费下载</a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <div class="book-cover c4">经</div>
+                    <div class="book-info">
+                        <h3>经济学原理</h3>
+                        <div class="book-author">[美] 曼昆</div>
+                        <span class="book-tag">经济管理</span>
+                        <p class="book-desc">全球最受欢迎的经济学入门教材之一，用生活案例讲透经济学十大原理。</p>
+                        <a href="#download" class="btn-download">免费下载</a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <div class="book-cover c3">活</div>
+                    <div class="book-info">
+                        <h3>活着</h3>
+                        <div class="book-author">余华</div>
+                        <span class="book-tag">文学小说</span>
+                        <p class="book-desc">中国当代文学代表作，讲述福贵苦难而坚韧的一生，触动无数读者心灵。</p>
+                        <a href="#download" class="btn-download">免费下载</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 最新更新区 ============ -->
+    <section class="section" id="latest">
+        <div class="container">
+            <div class="section-head">
+                <h2>最新更新</h2>
+                <p>每日更新，紧跟新书发布</p>
+                <div class="divider"></div>
+            </div>
+            <div class="update-list">
+                <div class="update-item">
+                    <div class="u-title">追风筝的人<span class="u-author">卡勒德·胡赛尼</span></div>
+                    <div class="u-cat">文学小说</div>
+                    <div class="u-date">2026-06-25</div>
+                    <a href="#download" class="u-link">下载</a>
+                </div>
+                <div class="update-item">
+                    <div class="u-title">明朝那些事儿<span class="u-author">当年明月</span></div>
+                    <div class="u-cat">历史传记</div>
+                    <div class="u-date">2026-06-24</div>
+                    <a href="#download" class="u-link">下载</a>
+                </div>
+                <div class="update-item">
+                    <div class="u-title">代码整洁之道<span class="u-author">Robert C. Martin</span></div>
+                    <div class="u-cat">计算机/IT</div>
+                    <div class="u-date">2026-06-23</div>
+                    <a href="#download" class="u-link">下载</a>
+                </div>
+                <div class="update-item">
+                    <div class="u-title">原则<span class="u-author">瑞·达利欧</span></div>
+                    <div class="u-cat">经济管理</div>
+                    <div class="u-date">2026-06-22</div>
+                    <a href="#download" class="u-link">下载</a>
+                </div>
+                <div class="update-item">
+                    <div class="u-title">小王子<span class="u-author">圣埃克苏佩里</span></div>
+                    <div class="u-cat">文学小说</div>
+                    <div class="u-date">2026-06-21</div>
+                    <a href="#download" class="u-link">下载</a>
+                </div>
+                <div class="update-item">
+                    <div class="u-title">思考，快与慢<span class="u-author">丹尼尔·卡尼曼</span></div>
+                    <div class="u-cat">人文社科</div>
+                    <div class="u-date">2026-06-20</div>
+                    <a href="#download" class="u-link">下载</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 网站特色区 ============ -->
+    <section class="section section-alt" id="features">
+        <div class="container">
+            <div class="section-head">
+                <h2>为什么选择读书派</h2>
+                <p>四个理由，让阅读更轻松</p>
+                <div class="divider"></div>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="f-icon">📚</div>
+                    <h3>资源丰富</h3>
+                    <p>收录万余册精选电子书，覆盖八大分类，满足不同阅读需求。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="f-icon">📱</div>
+                    <h3>格式多样</h3>
+                    <p>支持 EPUB、PDF、MOBI 三种主流格式，适配手机、平板、电纸书。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="f-icon">🎁</div>
+                    <h3>免费下载</h3>
+                    <p>无需注册，永久免费，所有书籍一键下载，零门槛畅享阅读。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="f-icon">⚡</div>
+                    <h3>更新及时</h3>
+                    <p>每日更新新书，紧跟出版动态，第一时间获取热门好书资源。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 关于我们 ============ -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-box">
+                <h2>关于读书派</h2>
+                <p class="about-sub">dushupai.github.io</p>
+                <p>读书派是一个由阅读爱好者维护的中文电子书资源网站，致力于为读者提供优质、免费、便捷的电子书下载服务。我们相信阅读改变生活，知识照亮未来。</p>
+                <p>网站收录文学小说、人文社科、历史传记、经济管理、计算机IT、科幻奇幻、励志成功、生活休闲等各类电子书，并提供 EPUB、PDF、MOBI 多种格式，适配不同阅读设备。</p>
+                <p>所有资源均来自互联网公开整理，仅供学习交流使用。如涉及版权问题，请联系我们及时处理。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 下载说明区（#download 锚点目标，避免死链） ============ -->
+    <section class="download-note" id="download">
+        <div class="container">
+            <div class="note-box">
+                <strong>下载说明：</strong>点击书籍的「免费下载」按钮即可获取电子书文件，支持 EPUB / PDF / MOBI 格式。当前页面为静态演示，实际部署时请将下载按钮链接替换为真实下载地址。
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 页脚 ============ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-brand">
+                    <div class="logo"><span class="logo-mark">书</span><span>读书派</span></div>
+                    <p>专注提供免费电子书下载的中文资源网站，让阅读触手可及。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>书籍分类</h4>
+                    <ul>
+                        <li><a href="#latest">文学小说</a></li>
+                        <li><a href="#latest">人文社科</a></li>
+                        <li><a href="#latest">历史传记</a></li>
+                        <li><a href="#latest">计算机/IT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#hero">首页</a></li>
+                        <li><a href="#hot">热门推荐</a></li>
+                        <li><a href="#latest">最新更新</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>友情链接</h4>
+                    <ul>
+                        <!-- 友链为占位，部署时替换为有效链接；当前指向本页锚点避免死链 -->
+                        <li><a href="#hero">阅读社区</a></li>
+                        <li><a href="#hero">书友论坛</a></li>
+                        <li><a href="#hero">作家专栏</a></li>
+                        <li><a href="#hero">投稿合作</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 读书派 (dushupai.github.io) · 本站资源仅供学习交流，请于下载后 24 小时内删除 · <a href="#about">版权声明</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
