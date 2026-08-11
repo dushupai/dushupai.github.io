@@ -214,6 +214,62 @@
         .hero-stat .num { font-size: 30px; font-weight: 700; color: var(--color-accent-light); }
         .hero-stat .label { font-size: 14px; color: rgba(255,255,255,0.8); }
 
+        /* ---------- Hero 搜索框 ---------- */
+        .hero-search {
+            display: flex;
+            max-width: 620px;
+            margin: 0 auto 18px;
+            background: #fff;
+            border-radius: 30px;
+            padding: 6px 6px 6px 8px;
+            box-shadow: var(--shadow-lg);
+        }
+        .hero-search-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 12px 20px;
+            font-size: 15px;
+            color: var(--color-text);
+            outline: none;
+            min-width: 0;
+        }
+        .hero-search-btn {
+            border: none;
+            border-radius: 24px;
+            background: var(--color-accent);
+            color: #fff;
+            padding: 0 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .hero-search-btn:hover { background: var(--color-accent-light); }
+        /* ---------- 推荐搜索词 ---------- */
+        .hot-words {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+        .hot-words-label { font-size: 14px; color: rgba(255,255,255,0.8); }
+        .hot-word {
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border-radius: 16px;
+            padding: 4px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .hot-word:hover { background: var(--color-accent); border-color: var(--color-accent); }
+
         /* ---------- 通用区块标题 ---------- */
         .section { padding: 70px 0; }
         .section-alt { background: var(--color-bg-alt); }
@@ -455,8 +511,8 @@
                 <a href="#about">关于我们</a>
             </nav>
             <!-- 搜索表单：实际部署时将 action 替换为真实搜索接口地址 -->
-            <form class="nav-search" role="search" action="./index.html" method="get" aria-label="站内搜索">
-                <input type="search" name="q" placeholder="搜索书名或作者" aria-label="搜索关键词">
+            <form class="nav-search" role="search" action="https://www.teccses.org/" method="get" rel="noopener noreferrer" aria-label="电子书搜索">
+                <input type="search" name="s" placeholder="搜索书名或作者" aria-label="搜索关键词">
                 <button type="submit">搜索</button>
             </form>
             <button class="nav-toggle" aria-label="展开菜单">☰</button>
@@ -468,9 +524,19 @@
         <div class="container">
             <h1>读书派 · 海量电子书免费下载</h1>
             <p class="hero-sub">读书派是一个专注提供免费电子书下载的中文资源网站，收录文学、社科、历史、经管、计算机等各类电子书，支持 EPUB / PDF / MOBI 多种格式，让阅读触手可及。</p>
-            <div class="hero-actions">
-                <a href="#hot" class="btn btn-primary">开始找书</a>
-                <a href="#category" class="btn btn-outline">浏览分类</a>
+            <!-- Hero 搜索框：实际部署时将 action 替换为真实搜索接口地址 -->
+            <form class="hero-search" role="search" action="https://www.teccses.org/" method="get" rel="noopener noreferrer" aria-label="电子书搜索">
+                <input type="search" name="s" class="hero-search-input" placeholder="输入书名或作者，如：三体、余华、经济学…" aria-label="搜索电子书">
+                <button type="submit" class="hero-search-btn" aria-label="搜索">搜索</button>
+            </form>
+            <div class="hot-words">
+                <span class="hot-words-label">热门搜索：</span>
+                <button type="button" class="hot-word">三体</button>
+                <button type="button" class="hot-word">百年孤独</button>
+                <button type="button" class="hot-word">人类简史</button>
+                <button type="button" class="hot-word">活着</button>
+                <button type="button" class="hot-word">余华</button>
+                <button type="button" class="hot-word">经济学原理</button>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat"><div class="num">10000+</div><div class="label">精选电子书</div></div>
@@ -675,7 +741,7 @@
     <section class="download-note" id="download">
         <div class="container">
             <div class="note-box">
-                <strong>下载说明：</strong>点击书籍的「免费下载」按钮即可获取电子书文件，支持 EPUB / PDF / MOBI 格式。当前页面为静态演示，实际部署时请将下载按钮链接替换为真实下载地址。
+                <strong>下载说明：</strong>点击书籍的「免费下载」按钮即可获取电子书文件，支持 EPUB / PDF / MOBI 格式。
             </div>
         </div>
     </section>
@@ -722,6 +788,21 @@
             </div>
         </div>
     </footer>
+
+    <!-- ============ 推荐搜索词交互（点击填入搜索框），无外部依赖 ============ -->
+    <script>
+        (function () {
+            var input = document.querySelector('.hero-search-input');
+            if (!input) { return; }
+            var words = document.querySelectorAll('.hot-word');
+            for (var i = 0; i < words.length; i++) {
+                words[i].addEventListener('click', function () {
+                    input.value = this.textContent.trim();
+                    input.form.submit();
+                });
+            }
+        })();
+    </script>
 
 </body>
 </html>
